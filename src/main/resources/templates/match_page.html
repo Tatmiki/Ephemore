@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ephemore - Encontre seu Match</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <!-- Formas de fundo -->
+    <div class="shape shape-left"></div>
+    <div class="shape shape-right"></div>
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-ellipse"></div>
+    <div class="shape shape-rect"></div>
+    <div class="shape shape-triangle"></div>
+
+    <main class="container">
+        <h1 class="logo">Ephemore</h1>
+
+        <!-- Botões de ação no topo -->
+        <div class="top-actions">
+            <form th:action="@{/logout}" method="post">
+                <button id="logoutBtn" class="action-btn logout-btn" title="Sair da conta" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>
+                    <span>Sair</span>
+                </button>
+            </form>
+
+            <form onsubmit="return confirm('Tem certeza que deseja deletar sua conta?');">
+                <button id="deleteAccountBtn" class="action-btn delete-account-btn" title="Excluir conta" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                    </svg>
+                    <span>Excluir Conta</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="edit-buttons">
+            <button id="editMyProfile" class="edit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>
+                Editar Meu Perfil
+            </button>
+            <button id="editDesiredProfile" class="edit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>
+                Editar Perfil Desejado
+            </button>
+        </div>
+
+        <button id="matchButton" class="match-button">MATCH</button>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">Procurando seu match perfeito...</div>
+        </div>
+
+        <div id="matchResult" class="match-result">
+            <h2>Encontramos um match!</h2>
+
+            <div class="profiles-container">
+                <div class="profile-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Seu perfil" class="profile-image"
+                        id="myProfileImg">
+                    <div class="profile-name" id="myProfileName" th:text="${user.name}">Nome</div>
+                </div>
+
+                <div class="heart-container">
+                    <div class="heart">❤️</div>
+                    <div class="match-percentage" id="matchPercentage">85%</div>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Perfil match" class="profile-image"
+                        id="matchProfileImg">
+                    <div class="profile-name" id="matchProfileName">Ana Oliveira</div>
+                </div>
+            </div>
+
+            <button id="backButton" class="back-button">Voltar</button>
+        </div>
+    </main>
+
+    <!-- Modal para detalhes do perfil -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">Detalhes do Perfil</h2>
+
+            <div class="profile-info">
+                <h3>Seu Perfil</h3>
+                <div class="info-item">
+                    <span class="info-label">Nome:</span>
+                    <span id="modalMyName" th:text="${user.name}">Nome</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Idade:</span>
+                    <span id="modalMyAge">28 anos</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Interesses:</span>
+                    <div class="tags" id="modalMyInterests">
+                        <span class="tag geek">Geek</span>
+                        <span class="tag sports">Esportes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <h3>Perfil Desejado</h3>
+                <div class="info-item">
+                    <span class="info-label">Faixa de idade:</span>
+                    <span id="modalDesiredAge">25-32 anos</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Interesses:</span>
+                    <div class="tags" id="modalDesiredInterests">
+                        <span class="tag geek">Geek</span>
+                        <span class="tag party">Festa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal editar perfil -->
+    <div id="editMyProfileModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">Editar Meu Perfil</h2>
+
+            <form th:action="@{/user/update}" method="POST" th:object="${userUpdateDTO}" class="edit-form"
+                id="myProfileForm">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" th:field="*{name}" required minlength="2" maxlength="50">
+                    <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="myAge">Idade:</label>
+                    <input type="number" id="myAge" min="18" max="99" value="28" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Interesses:</label>
+                    <div class="interests-container">
+                        <label class="interest-item">
+                            <input type="checkbox" name="myInterest" value="geek" checked> Geek
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="myInterest" value="sports" checked> Esportes
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="myInterest" value="party"> Festa
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal editar perfil desejado -->
+    <div id="editDesiredProfileModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">Editar Perfil Desejado</h2>
+
+            <form class="edit-form" id="desiredProfileForm">
+                <div class="form-group">
+                    <label for="minAge">Idade mínima:</label>
+                    <input type="number" id="minAge" min="18" max="99" value="25" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="maxAge">Idade máxima:</label>
+                    <input type="number" id="maxAge" min="18" max="99" value="32" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Interesses desejados:</label>
+                    <div class="interests-container">
+                        <label class="interest-item">
+                            <input type="checkbox" name="desiredInterest" value="geek" checked> Geek
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="desiredInterest" value="sports"> Esportes
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="desiredInterest" value="party" checked> Festa
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmar excluir conta -->
+    <div id="deleteAccountModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" data-modal="deleteAccountModal">&times;</button>
+            <h2 class="modal-title">Excluir Conta</h2>
+            <p class="modal-text">Tem certeza que deseja excluir sua conta permanentemente? Esta ação não pode ser
+                desfeita.</p>
+            <div class="modal-actions">
+                <form id="deleteForm" th:action="@{/user/delete}" method="POST">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type="submit" class="btn delete-btn">Confirmar Exclusão</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+        <p class="footer-text">
+            Copyright © 2025, Ephemore. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script th:src="@{/js/match_page.js}"></script>
+</body>
+
+</html>

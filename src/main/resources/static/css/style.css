@@ -1,0 +1,844 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+/* Variáveis de cor */
+:root {
+    --red: #B92A23;
+    --dark: #222;
+    --light-gray: #f5f5f5;
+    --input-border: #ddd;
+    --match-green: #4CAF50;
+    --match-blue: #2196F3;
+}
+
+/* Shapes de background */
+.shape {
+    position: absolute;
+    background: var(--red);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    z-index: -1;
+}
+
+.shape-left {
+    top: -100px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+}
+
+.shape-right {
+    top: 100px;
+    right: -200px;
+    width: 500px;
+    height: 300px;
+    clip-path: polygon(30% 0%, 100% 20%, 80% 100%, 0% 80%);
+}
+
+/* Novas formas decorativas */
+.shape-circle {
+    top: 35%;
+    left: -80px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.shape-ellipse {
+    bottom: 100px;
+    right: -120px;
+    width: 250px;
+    height: 150px;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.shape-rect {
+    top: 25%;
+    right: 12%;
+    width: 200px;
+    height: 50px;
+    transform: rotate(-20deg);
+    opacity: 0.5;
+    border-radius: 8px;
+}
+
+.shape-triangle {
+    bottom: 180px;
+    left: 8%;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 120px solid var(--red);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+    opacity: 0.7;
+}
+
+/* Container central - Correção para tela de match */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    /* Centraliza todo o conteúdo */
+}
+
+/* Card do formulário */
+.form-card {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Logo */
+.logo {
+    font-family: 'Grand Hotel', cursive;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--red);
+    font-size: 4rem;
+}
+
+/* Título dos formulários */
+.form-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Formulário */
+.form-card label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.form-card input[type="email"],
+.form-card input[type="password"],
+.form-card input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* Link de login */
+.login-link {
+    font-size: 0.85rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.login-link a {
+    color: var(--red);
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+/* Botão */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn:hover {
+    background: #333;
+}
+
+/* Botões de ação no topo */
+.top-actions {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+/* Botões de ação - Estilos base */
+.action-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 8px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Botão de logout específico */
+.logout-btn {
+    color: var(--logout-blue);
+    border-color: rgba(25, 118, 210, 0.2);
+    background: rgba(25, 118, 210, 0.1);
+}
+
+.logout-btn svg {
+    fill: var(--logout-blue);
+}
+
+.logout-btn:hover {
+    background: rgba(25, 118, 210, 0.15);
+}
+
+/* Variável de cor para o botão de logout */
+:root {
+    --logout-blue: #1976d2;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    /* Em telas pequenas, esconder o texto dos botões de ação */
+    .action-btn span {
+        display: none;
+    }
+
+    .action-btn {
+        padding: 12px;
+        border-radius: 50%;
+    }
+    
+    .top-actions {
+        gap: 10px;
+        right: 10px;
+    }
+}
+
+/* Botão de match */
+.match-button {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--red);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(185, 42, 35, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.match-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(185, 42, 35, 0.6);
+}
+
+.match-button::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.match-button:hover::before {
+    transform: scale(1.2);
+}
+
+/* Botões de edição */
+.edit-buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.edit-btn {
+    padding: 12px 25px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-btn:hover {
+    background: #333;
+}
+
+/* Resultado do match */
+.match-result {
+    display: none;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.profiles-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.profile-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--match-blue);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-name {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.heart-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heart {
+    font-size: 3.5rem;
+    color: var(--red);
+    animation: pulse 1.5s infinite;
+}
+
+.match-percentage {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--red);
+    margin-top: 10px;
+}
+
+.back-button {
+    padding: 12px 30px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+    margin-top: 30px;
+}
+
+.back-button:hover {
+    background: #333;
+}
+
+/* Animação de carregamento */
+.loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    border: 8px solid rgba(185, 42, 35, 0.2);
+    border-top: 8px solid var(--red);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: var(--dark);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.4s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+    background: none;
+    border: none;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--red);
+    text-align: center;
+}
+
+.profile-info {
+    margin: 20px 0;
+}
+
+.info-item {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.info-label {
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag {
+    background: var(--light-gray);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.tag.geek {
+    background: #e3f2fd;
+    color: var(--match-blue);
+}
+
+.tag.sports {
+    background: #e8f5e9;
+    color: var(--match-green);
+}
+
+.tag.party {
+    background: #fce4ec;
+    color: #e91e63;
+}
+
+/* Formulário de edição */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.interests-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.interest-item {
+    display: flex;
+    align-items: center;
+}
+
+.interest-item input {
+    margin-right: 5px;
+}
+
+.save-btn {
+    padding: 12px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+    margin-top: 15px;
+}
+
+.save-btn:hover {
+    background: #a5241e;
+}
+
+/* Barra inferior */
+.footer-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--red);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* Modal de exclusão */
+.modal-text {
+    margin: 20px 0;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Botão flutuante de exclusão */
+.delete-account-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(211, 47, 47, 0.1);
+    border: 1px solid rgba(211, 47, 47, 0.2);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    color: #d32f2f;
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 8px;
+    z-index: 100;
+}
+
+.delete-account-btn:hover {
+    background: rgba(211, 47, 47, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.delete-account-btn:active {
+    transform: translateY(1px);
+}
+
+.delete-account-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #d32f2f;
+    flex-shrink: 0;
+}
+
+/* Botão de Excluir Conta na modal */
+.delete-btn {
+    background: linear-gradient(to bottom, #d32f2f, #b71c1c);
+    color: white !important;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(179, 38, 30, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.delete-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(to bottom, #c62828, #9a1616);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(179, 38, 30, 0.6);
+}
+
+.delete-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.delete-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(179, 38, 30, 0.4);
+}
+
+.delete-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+    flex-shrink: 0;
+}
+
+/* Mensagens de erro */
+.error-message {
+    background-color: #ffebee;
+    color: #b92A23;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.field-error {
+    color: #b92A23;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    text-align: left;
+}
+
+.success-msg {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Animações */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profiles-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .heart-container {
+        position: relative;
+        margin: 20px 0;
+        transform: none;
+        top: auto;
+        left: auto;
+    }
+
+    .edit-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Em telas pequenas, esconder o texto do botão flutuante */
+    .delete-account-btn span {
+        display: none;
+    }
+
+    .delete-account-btn {
+        padding: 12px;
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .shape-right {
+        display: none;
+    }
+
+    .shape-left {
+        width: 300px;
+        height: 300px;
+        top: -80px;
+        left: -120px;
+    }
+
+    .match-button {
+        width: 160px;
+        height: 160px;
+        font-size: 1.7rem;
+    }
+
+    .form-card {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+}

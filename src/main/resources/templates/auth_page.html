@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ephemore</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <!-- Formas de fundo -->
+    <div class="shape shape-left"></div>
+    <div class="shape shape-right"></div>
+
+    <!-- Formas decorativas extras -->
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-ellipse"></div>
+    <div class="shape shape-rect"></div>
+    <div class="shape shape-triangle"></div>
+
+
+    <main class="container">
+        <div class="form-card">
+            <h1 class="logo">Ephemore</h1>
+
+            <!-- FORMULÁRIO DE REGISTRO -->
+            <form id="registerForm" style="display: none;" th:action="@{/auth/register}" th:object="${userRegisterDTO}"
+                method="post">
+                <h1 class="form-title">Registro</h1>
+
+                <!-- Mensagens de erro gerais -->
+                <div th:if="${registerError}" class="error-message">
+                    <p th:text="${registerError}"></p>
+                </div>
+
+                <!-- Mensagens de erro por campo -->
+                <div th:each="error : ${#fields.errors('*')}" class="error-message">
+                    <p th:text="${error}"></p>
+                </div>
+
+                <label for="reg-name">Nome</label>
+                <input type="text" id="reg-name" name="name" placeholder="Digite seu nome" required />
+                <div th:if="${#fields.hasErrors('name')}" class="field-error">
+                    <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+                </div>
+
+                <label for="reg-email">Email</label>
+                <input type="email" id="reg-email" name="email" placeholder="Digite seu e‑mail" required />
+                <div th:if="${#fields.hasErrors('email')}" class="field-error">
+                    <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+                </div>
+
+                <label for="reg-password">Senha</label>
+                <input type="password" id="reg-password" name="password" placeholder="••••••••" required />
+                <div th:if="${#fields.hasErrors('password')}" class="field-error">
+                    <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+                </div>
+
+                <p class="login-link">
+                    Já tem uma conta?
+                    <a href="#" id="showLogin">Login</a>
+                </p>
+
+                <button type="submit" class="btn">Registrar</button>
+            </form>
+
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form id="loginForm" th:action="@{/auth/login}" th:object="${userLoginDTO}" method="post">
+                <h1 class="form-title">Login</h1>
+
+                <!-- Mensagens de erro gerais -->
+                <div th:if="${loginError}" class="error-message">
+                    <p th:text="${loginError}"></p>
+                </div>
+
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Digite seu e‑mail" required />
+                <div th:if="${#fields.hasErrors('email')}" class="field-error">
+                    <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+                </div>
+
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" name="password" placeholder="••••••••" required />
+                <div th:if="${#fields.hasErrors('password')}" class="field-error">
+                    <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+                </div>
+
+                <p class="login-link">
+                    Não tem uma conta?
+                    <a href="#" id="showRegister">Registrar</a>
+                </p>
+
+                <div th:if="${param.success}" class="success-msg">
+                    <p>✔ Registro realizado com sucesso! Faça login.</p>
+                </div>
+
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Barra inferior -->
+    <footer class="footer-bar">
+        <p class="footer-text">
+            Copyright © 2025, Ephemore. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script th:src="@{/js/auth_page.js}"></script>
+</body>
+
+</html>
